@@ -1,49 +1,72 @@
-$monospace-font: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;;
-$line-space: 22px;
+// ================ Variables ================
+$color: #3eaf7c;
+$color-secondary: #42b983;
+$color-accessory: rgb(218, 112, 43);
 
-$text-color: #2c3e50;
-$theme-color: #3eaf7c;
-$theme-color-hover: #4abf8a;
-$theme-color-hover: #42b983;
-$theme-color-accessory: rgb(218, 112, 43);
+$color-text: #2c3e50;
+$color-border: #eaecef;
+$color-background: #f3f5f7;
 
-.markdown-body {
-  word-break: break-word;
-  line-height: 1.7;
-  font-weight: 400;
-  font-size: 16px;
-  overflow-x: hidden;
-  color: $text-color;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$color-code-bg: #282c34;
+
+// Font
+$font-size-sm: 12px;
+$font-size: 14px;
+$font-size-lg: 16px;
+
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$font-family-monospace: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+
+$line-height: 1.7;
+
+// Space
+$paragraph-space: 22px;
+
+// Table
+$table-border: 1px solid $color-border;
+$table-header-bg: $color;
+$table-row-bg: #f6f8fa;
+
+
+// ================ Mixins ================
+@mixin Font {
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: $font-size-lg;
+  color: $color-text;
+  font-weight: 400;
+}
+
+// Markdown Content
+.markdown-body {
+  @include Font();
+  word-break: break-word;
+  line-height: $line-height;
+  overflow-x: hidden;
+
+  // Title
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    line-height: 1.5;
+    line-height: $line-height;
     font-weight: 600;
-    margin-top: 35px;
+    margin-top: 36px;
     margin-bottom: 8px;
-    padding-bottom: 5px;
-    ::before {
-      content: "#";
-      display: inline-block;
-      color: $theme-color;
-      padding-right: .23em;
-    }
+    padding-bottom: 6px;
   }
   h1 {
     font-size: 30px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
   }
   h2 {
     padding-bottom: 8px;
     margin-top: 50px;
     font-size: 24px;
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid $color-border;
   }
   h3 {
     font-size: 18px;
@@ -53,16 +76,18 @@ $theme-color-accessory: rgb(218, 112, 43);
     font-size: 16px;
   }
   h5 {
-    font-size: 15px;
+    font-size: 14px;
   }
   h6 {
-    margin-top: 5px;
+    font-size: 12px;
+    margin-top: 4px;
   }
 
+  // Paragraph
   p {
     line-height: inherit;
-    margin-top: $line-space;
-    margin-bottom: $line-space;
+    margin-top: $paragraph-space;
+    margin-bottom: $paragraph-space;
   }
 
   img {
@@ -70,17 +95,15 @@ $theme-color-accessory: rgb(218, 112, 43);
   }
 
   hr {
-    border-top: 1px solid #eaecef;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    border: none;
+    border-top: 1px solid $color-border;
+    margin-top: 36px;
+    margin-bottom: 36px;
   }
 
-  // `` 高亮
+  // 高亮
   code {
-    font-family: $monospace-font;
+    font-family: $font-family-monospace;
     word-break: break-word;
     border-radius: 3px;
     overflow-x: auto;
@@ -95,15 +118,15 @@ $theme-color-accessory: rgb(218, 112, 43);
   }
 
   pre {
-    font-family: $monospace-font;
+    font-family: $font-family-monospace;
     overflow: auto;
     position: relative;
-    line-height: 1.6;
+    line-height: 1.7;
     padding: 20px 24px;
-    background-color: #282c34;
-    border-radius: 6px;
+    background-color: $color-code-bg;
+    border-radius: 8px;
     > code {
-      font-size: 14px;
+      font-size: $font-size;
       padding: 0;
       margin: 0;
       word-break: normal;
@@ -113,77 +136,72 @@ $theme-color-accessory: rgb(218, 112, 43);
     }
   }
 
-  // a 链接
+  // Link
   a {
     text-decoration: none;
-    color: $theme-color;
+    color: $color;
     font-weight: 500;
     &:hover,
     &:active {
-      color: $theme-color-hover;
-      border-bottom: 1px solid  $theme-color-hover;
+      color: $color-secondary;
+      border-bottom: 1px solid  $color-secondary;
     }
   }
 
-  // 表格
+  // Table
   table {
     display: inline-block !important;
     font-size: 14px;
     width: auto;
     max-width: 100%;
-    overflow: auto;
+    overflow-x: auto;
     margin: 16px 0;
     border-collapse: collapse;
   }
   thead {
-    background: #f6f6f6;
-    background: $theme-color;
-    color: #000;
+    background: $color;
     color: #fff;
     text-align: left;
   }
   tr:nth-child(2n) {
-    background-color: #f6f8fa;
+    background-color: $table-row-bg;
   }
   th,
   td {
-    border: 1px solid #dfe2e5;
+    border: 1px solid $color-border;
     padding: 10px 16px;
-    line-height: 24px;
-  }
-  td {
-    min-width: 120px;
+    line-height: 22px;
   }
 
   // 引用
   blockquote {
     font-size: 14px;
-    padding: 6px 23px;
-    margin: 22px 0;
-    border-left: 6px solid #42b983;
-    background-color: #f3f5f7;
+    padding: 4px 24px;
+    margin: 16px 0;
+    border-left: 6px solid $color-secondary;
+    background-color: $color-background;
     font-weight: 400;
     &::after {
       display: block;
       content: '';
     }
     & > p {
-      margin: 10px 0;
+      margin: 16px 0;
     }
   }
 
   p, ul, ol {
-    line-height: 1.7;
+    line-height: $line-height;
   }
   
 
   ol,
   ul {
-    padding-left: 28px;
+    padding-left: 32px;
     li {
       margin-bottom: 0;
       list-style: inherit;
-      & .task-list-item {
+      &.task-list-item {
         list-style: none;
         ul,
         ol {
@@ -194,11 +212,11 @@ $theme-color-accessory: rgb(218, 112, 43);
 
     ul,
     ol {
-      margin-top: 3px;
+      margin: 4px 0;
     }
   }
   ol li {
-    padding-left: 6px;
+    padding-left: 4px;
   }
   
   .contains-task-list {

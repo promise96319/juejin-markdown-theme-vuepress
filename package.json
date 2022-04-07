@@ -2,7 +2,13 @@
   "name": "juejin-markdown-theme-vuepress",
   "private": true,
   "license": "MIT",
+  "scripts": {
+    "dev": "npx juejin-theme-devtool ./vuepress.scss"
+  },
   "dependencies": {
     "bytemd": "^1.2.0"
+  },
+  "devDependencies": {
+    "juejin-theme-devtool": "0.0.1"
   }
 }
