@@ -57,6 +57,9 @@ $table-row-bg: #f6f8fa;
     margin-top: 36px;
     margin-bottom: 8px;
     padding-bottom: 6px;
+    &::before {
+      display: none;
+    }
   }
   h1 {
     font-size: 30px;
@@ -145,6 +148,9 @@ $table-row-bg: #f6f8fa;
     &:active {
       color: $color-secondary;
       border-bottom: 1px solid  $color-secondary;
+    }
+    &::before {
+      display: none;
     }
   }
 

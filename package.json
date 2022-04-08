@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "npx juejin-theme-devtool ./vuepress.scss"
+    "dev": "npx jjsm vuepress.scss"
   },
   "dependencies": {
     "bytemd": "^1.2.0"
